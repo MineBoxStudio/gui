@@ -58,6 +58,7 @@ public class StringLayoutMenuInventoryBuilder
                 }
 
                 item(itemClickable.clone(slotIndex));
+                slotIndex++;
             }
         }
 
