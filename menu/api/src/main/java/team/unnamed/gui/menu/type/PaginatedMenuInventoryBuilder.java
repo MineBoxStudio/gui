@@ -105,7 +105,7 @@ public class PaginatedMenuInventoryBuilder<E>
         List<Integer> availableSlots = new ArrayList<>();
         int itemsPerRowCounter = 0;
 
-        for (int i = entitySlotFrom; i < entitySlotTo; i++) {
+        for (int i = entitySlotFrom; i <= entitySlotTo + 1; i++) {
             itemsPerRowCounter++;
 
             boolean isSkippedSlot = false;
