@@ -63,7 +63,8 @@ public class SkullItemBuilder
         if (skin.getName() != null) {
             skullMeta.setOwner(skin.getName());
         } else {
-            GameProfile gameProfile = new GameProfile(UUID.randomUUID(), null);
+            UUID uuid = UUID.randomUUID();
+            GameProfile gameProfile = new GameProfile(uuid, uuid.toString());
 
             if (skin.getSignature() != null) {
                 gameProfile.getProperties().put("textures", new Property(
