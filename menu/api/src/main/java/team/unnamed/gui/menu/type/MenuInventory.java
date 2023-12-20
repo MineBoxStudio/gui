@@ -54,6 +54,8 @@ public interface MenuInventory {
 
     boolean canIntroduceItems();
 
+    boolean canDragItems();
+
     default @Nullable ItemClickable getItem(int slot) {
         return getItems().get(slot);
     }

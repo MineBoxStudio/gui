@@ -3,6 +3,7 @@ package team.unnamed.gui.menu.listener;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.inventory.Inventory;
 import team.unnamed.gui.menu.adapt.MenuInventoryWrapper;
 import team.unnamed.gui.menu.item.ItemClickable;
@@ -51,4 +52,20 @@ public class InventoryClickListener
         }
     }
 
+    @EventHandler
+    public void onDrag(InventoryDragEvent event) {
+        Inventory inventory = event.getInventory();
+
+        if (MenuUtil.isCustomMenu(inventory)) {
+            MenuInventoryWrapper wrapper = MenuUtil.getAsWrapper(inventory);
+            MenuInventory menuInventory = wrapper.getMenuInventory();
+
+            if (menuInventory.canDragItems()) return;
+
+            if (event.getInventorySlots().stream().noneMatch(integer -> event.getRawSlots().contains(integer)) )
+                return;
+
+            event.setCancelled(true);
+        }
+    }
 }

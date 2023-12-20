@@ -22,6 +22,7 @@ abstract class MenuInventoryBuilderLayout<T extends MenuInventoryBuilder>
     protected Predicate<Inventory> openAction;
     protected Predicate<Inventory> closeAction;
     protected boolean canIntroduceItems;
+    protected boolean canDragItems;
 
     protected MenuInventoryBuilderLayout(String title) {
         this(title, 6);
@@ -141,10 +142,17 @@ abstract class MenuInventoryBuilderLayout<T extends MenuInventoryBuilder>
     }
 
     @Override
+    public T dragItems(boolean canDragItems) {
+        this.canDragItems = canDragItems;
+        return back();
+    }
+
+    @Override
     public Inventory build() {
         return internalBuild(new DefaultMenuInventory(
                 title, slots, items,
-                openAction, closeAction, canIntroduceItems
+                openAction, closeAction, canIntroduceItems,
+                canDragItems
         ));
     }
 

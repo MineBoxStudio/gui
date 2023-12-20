@@ -17,13 +17,15 @@ public class DefaultMenuInventory implements MenuInventory {
     protected final Predicate<Inventory> openAction;
     protected final Predicate<Inventory> closeAction;
     protected final boolean canIntroduceItems;
+    protected final boolean canDragItems;
 
     protected DefaultMenuInventory(
             String title, int slots,
             List<ItemClickable> items,
             Predicate<Inventory> openAction,
             Predicate<Inventory> closeAction,
-            boolean canIntroduceItems
+            boolean canIntroduceItems,
+            boolean canDragItems
     ) {
         this.title = title;
         this.slots = slots;
@@ -31,6 +33,7 @@ public class DefaultMenuInventory implements MenuInventory {
         this.openAction = openAction;
         this.closeAction = closeAction;
         this.canIntroduceItems = canIntroduceItems;
+        this.canDragItems = canDragItems;
     }
 
     @NotNull
@@ -81,6 +84,11 @@ public class DefaultMenuInventory implements MenuInventory {
     @Override
     public boolean canIntroduceItems() {
         return canIntroduceItems;
+    }
+
+    @Override
+    public boolean canDragItems() {
+        return canDragItems;
     }
 
 }

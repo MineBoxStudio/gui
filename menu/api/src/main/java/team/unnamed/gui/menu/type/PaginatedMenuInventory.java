@@ -31,6 +31,7 @@ public class PaginatedMenuInventory<E> extends DefaultMenuInventory {
             Predicate<Inventory> openAction,
             Predicate<Inventory> closeAction,
             boolean canIntroduceItems,
+            boolean canDragItems,
             int entitySlotFrom, int availableEntitySlots,
             List<Integer> availableSlots, List<E> entities,
             int currentPage, List<String> layoutLines,
@@ -42,7 +43,7 @@ public class PaginatedMenuInventory<E> extends DefaultMenuInventory {
             ItemClickable itemIfNoPreviousPage,
             ItemClickable itemIfNoNextPage
     ) {
-        super(title, slots, items, openAction, closeAction, canIntroduceItems);
+        super(title, slots, items, openAction, closeAction, canIntroduceItems, canDragItems);
         this.entitySlotFrom = entitySlotFrom;
         this.availableEntitySlots = availableEntitySlots;
         this.availableSlots = availableSlots;
@@ -118,7 +119,7 @@ public class PaginatedMenuInventory<E> extends DefaultMenuInventory {
     public PaginatedMenuInventory<E> clone(int page) {
         return new PaginatedMenuInventory<>(
                 title, slots, items, openAction, closeAction, canIntroduceItems,
-                entitySlotFrom, availableEntitySlots, availableSlots,
+                canDragItems, entitySlotFrom, availableEntitySlots, availableSlots,
                 entities, page, layoutLines, layoutItems, entityParser,
                 previousPageItem, nextPageItem, itemIfNoEntities,
                 itemIfNoPreviousPage, itemIfNoNextPage

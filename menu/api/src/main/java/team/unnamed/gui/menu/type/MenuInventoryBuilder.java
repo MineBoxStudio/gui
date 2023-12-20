@@ -28,5 +28,7 @@ public interface MenuInventoryBuilder {
 
     MenuInventoryBuilder introduceItems(boolean canIntroduceItems);
 
+    MenuInventoryBuilder dragItems(boolean canDragItems);
+
     Inventory build();
 }
