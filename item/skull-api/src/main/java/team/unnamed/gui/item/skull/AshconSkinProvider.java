@@ -44,7 +44,7 @@ public class AshconSkinProvider implements SkinProvider {
             String signature = rawJson.get("signature").getAsString();
             String value = rawJson.get("value").getAsString();
 
-            return new SkullSkin(signature, value);
+            return new SkullSkin(signature, value, null);
         }
     }
 }

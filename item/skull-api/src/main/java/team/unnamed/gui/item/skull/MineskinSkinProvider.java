@@ -55,6 +55,6 @@ public class MineskinSkinProvider implements SkinProvider {
         JsonObject texture = data.getAsJsonObject("texture");
         String signature = texture.get("signature").getAsString();
         String value = texture.get("value").getAsString();
-        return new SkullSkin(signature, value);
+        return new SkullSkin(signature, value, null);
     }
 }

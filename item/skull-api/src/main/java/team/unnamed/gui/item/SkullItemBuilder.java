@@ -60,24 +60,36 @@ public class SkullItemBuilder
         ItemStack itemStack = super.build();
         SkullMeta skullMeta = (SkullMeta) itemStack.getItemMeta();
 
-        GameProfile gameProfile = new GameProfile(UUID.randomUUID(), null);
+        if (skin.getName() != null) {
+            skullMeta.setOwner(skin.getName());
+        } else {
+            GameProfile gameProfile = new GameProfile(UUID.randomUUID(), null);
 
-        gameProfile.getProperties().put("textures", new Property(
-                "textures",
-                skin.getValue(),
-                skin.getSignature()
-        ));
+            if (skin.getSignature() != null) {
+                gameProfile.getProperties().put("textures", new Property(
+                        "textures",
+                        skin.getValue(),
+                        skin.getSignature()
+                ));
+            } else {
+                gameProfile.getProperties().put("textures", new Property(
+                        "textures",
+                        skin.getValue()
+                ));
+            }
 
-        boolean accessible = PROFILE_FIELD.isAccessible();
-        PROFILE_FIELD.setAccessible(true);
+            boolean accessible = PROFILE_FIELD.isAccessible();
+            PROFILE_FIELD.setAccessible(true);
 
-        try {
-            PROFILE_FIELD.set(skullMeta, gameProfile);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } finally {
-            PROFILE_FIELD.setAccessible(accessible);
+            try {
+                PROFILE_FIELD.set(skullMeta, gameProfile);
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } finally {
+                PROFILE_FIELD.setAccessible(accessible);
+            }
         }
+
 
         itemStack.setItemMeta(skullMeta);
 
