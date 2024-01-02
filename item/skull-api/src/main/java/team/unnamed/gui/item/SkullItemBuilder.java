@@ -28,13 +28,8 @@ public class SkullItemBuilder
 
             PROFILE_FIELD = metaClass.getDeclaredField("profile");
 
-            if (ServerVersion.CURRENT.getMinor() < 13) {
-                SKULL_MATERIAL = Material.SKULL_ITEM;
-                DATA = 3;
-            } else {
-                SKULL_MATERIAL = Material.getMaterial("PLAYER_HEAD");
-                DATA = 0;
-            }
+            SKULL_MATERIAL = Material.getMaterial("PLAYER_HEAD");
+            DATA = 0;
         } catch (ClassNotFoundException | NoSuchFieldException e) {
             throw new IllegalStateException("Cannot get the SkullMeta profile field!", e);
         }

@@ -4,5 +4,6 @@ plugins {
 
 dependencies {
     api(project(":gui-item-api"))
-    compileOnly("org.spigotmc:spigot:1.8.8-R0.1-SNAPSHOT")
+    compileOnly("com.mojang:authlib:3.16.29")
+    compileOnly("io.papermc.paper:paper-api:1.17.1-R0.1-SNAPSHOT")
 }

@@ -17,20 +17,7 @@ public class DyeItemUtils {
         COLORS_BY_DYE = new HashMap<>();
 
         for (DyeColor dyeColor : DyeColor.values()) {
-            switch (dyeColor) {
-                case GRAY: {
-                    COLORS_BY_DYE.put(dyeColor, "LIGHT_GRAY");
-                    break;
-                }
-                case SILVER: {
-                    COLORS_BY_DYE.put(dyeColor, "GRAY");
-                    break;
-                }
-                default: {
-                    COLORS_BY_DYE.put(dyeColor, dyeColor.name());
-                    break;
-                }
-            }
+            COLORS_BY_DYE.put(dyeColor, dyeColor.name());
         }
     }
 

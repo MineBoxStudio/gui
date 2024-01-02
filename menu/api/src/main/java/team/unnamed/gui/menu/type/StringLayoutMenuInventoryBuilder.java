@@ -1,5 +1,6 @@
 package team.unnamed.gui.menu.type;
 
+import net.kyori.adventure.text.Component;
 import org.bukkit.inventory.Inventory;
 import team.unnamed.gui.menu.item.ItemClickable;
 
@@ -14,11 +15,11 @@ public class StringLayoutMenuInventoryBuilder
     protected final Map<Character, ItemClickable> layoutItems;
     protected final List<String> layoutLines;
 
-    protected StringLayoutMenuInventoryBuilder(String title) {
+    protected StringLayoutMenuInventoryBuilder(Component title) {
         this(title, 6);
     }
 
-    protected StringLayoutMenuInventoryBuilder(String title, int rows) {
+    protected StringLayoutMenuInventoryBuilder(Component title, int rows) {
         super(title, rows);
         this.layoutLines = new ArrayList<>(rows);
         this.layoutItems = new HashMap<>();

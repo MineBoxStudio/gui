@@ -1,5 +1,6 @@
 package team.unnamed.gui.menu.type;
 
+import net.kyori.adventure.text.Component;
 import org.bukkit.inventory.Inventory;
 import team.unnamed.gui.menu.item.ItemClickable;
 import team.unnamed.gui.menu.util.MenuUtil;
@@ -28,11 +29,11 @@ public class PaginatedMenuInventoryBuilder<E>
     private ItemClickable itemIfNoPreviousPage;
     private ItemClickable itemIfNoNextPage;
 
-    protected PaginatedMenuInventoryBuilder(String title) {
+    protected PaginatedMenuInventoryBuilder(Component title) {
         super(title);
     }
 
-    protected PaginatedMenuInventoryBuilder(String title, int rows) {
+    protected PaginatedMenuInventoryBuilder(Component title, int rows) {
         super(title, rows);
     }
 

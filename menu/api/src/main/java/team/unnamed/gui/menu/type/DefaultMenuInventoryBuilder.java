@@ -1,13 +1,15 @@
 package team.unnamed.gui.menu.type;
 
+import net.kyori.adventure.text.Component;
+
 public class DefaultMenuInventoryBuilder
         extends MenuInventoryBuilderLayout<DefaultMenuInventoryBuilder> {
 
-    protected DefaultMenuInventoryBuilder(String title) {
+    protected DefaultMenuInventoryBuilder(Component title) {
         super(title);
     }
 
-    protected DefaultMenuInventoryBuilder(String title, int rows) {
+    protected DefaultMenuInventoryBuilder(Component title, int rows) {
         super(title, rows);
     }
 

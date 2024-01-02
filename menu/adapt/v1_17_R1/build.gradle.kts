@@ -1,8 +1,9 @@
 plugins {
     id("gui.publishing-conventions")
+    id("io.papermc.paperweight.userdev") version "1.3.5"
 }
 
-configure<JavaPluginExtension> {
+java {
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(17))
     }
@@ -10,5 +11,5 @@ configure<JavaPluginExtension> {
 
 dependencies {
     api(project(":gui-menu-api"))
-    compileOnly("org.spigotmc:spigot:1.17.1-R0.1-SNAPSHOT")
+    paperDevBundle("1.17.1-R0.1-SNAPSHOT")
 }

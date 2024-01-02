@@ -1,5 +1,6 @@
 package team.unnamed.gui.menu.type;
 
+import net.kyori.adventure.text.Component;
 import org.bukkit.inventory.Inventory;
 import team.unnamed.gui.menu.item.ItemClickable;
 import team.unnamed.gui.menu.util.MenuUtil;
@@ -14,7 +15,7 @@ import static team.unnamed.validate.Validate.isState;
 abstract class MenuInventoryBuilderLayout<T extends MenuInventoryBuilder>
         implements MenuInventoryBuilder {
 
-    protected final String title;
+    protected final Component title;
     protected final int slots;
     private final int rows;
 
@@ -24,11 +25,11 @@ abstract class MenuInventoryBuilderLayout<T extends MenuInventoryBuilder>
     protected boolean canIntroduceItems;
     protected boolean canDragItems;
 
-    protected MenuInventoryBuilderLayout(String title) {
+    protected MenuInventoryBuilderLayout(Component title) {
         this(title, 6);
     }
 
-    protected MenuInventoryBuilderLayout(String title, int rows) {
+    protected MenuInventoryBuilderLayout(Component title, int rows) {
         isState(rows > 0 && rows <= 6,
                 "Rows must be major than 0 and minor than 6");
         this.title = isNotNull(title, "Title cannot be null.");

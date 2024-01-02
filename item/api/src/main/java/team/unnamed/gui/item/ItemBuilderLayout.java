@@ -1,5 +1,8 @@
 package team.unnamed.gui.item;
 
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.Style;
+import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
@@ -11,6 +14,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import static team.unnamed.validate.Validate.isNotNull;
 
@@ -21,8 +25,8 @@ abstract class ItemBuilderLayout<T extends ItemBuilder>
     private final int amount;
     private final byte data;
 
-    private String name;
-    private List<String> lore;
+    private Component name;
+    private List<Component> lore;
     private Map<Enchantment, Integer> enchantments;
     private List<ItemFlag> flags;
     private boolean unbreakable;
@@ -37,20 +41,23 @@ abstract class ItemBuilderLayout<T extends ItemBuilder>
     }
 
     @Override
-    public ItemBuilder name(String name) {
-        this.name = isNotNull(name, "Item name cannot be null.");
+    public ItemBuilder name(Component name) {
+        isNotNull(name, "Item name cannot be null.");
+        this.name = Component.empty().decoration(TextDecoration.ITALIC, TextDecoration.State.FALSE).append(name);
         return back();
     }
 
     @Override
-    public ItemBuilder lore(List<String> lore) {
-        this.lore = isNotNull(lore, "Item lore cannot be null.");
+    public ItemBuilder lore(List<Component> lore) {
+        isNotNull(lore, "Item lore cannot be null.");
+        this.lore = lore.stream().map(line -> Component.empty().decoration(TextDecoration.ITALIC, TextDecoration.State.FALSE).append(line)).collect(Collectors.toList());
         return back();
     }
 
     @Override
-    public ItemBuilder lore(String... lines) {
-        this.lore = Arrays.asList(isNotNull(lines, "Item lore cannot be null."));
+    public ItemBuilder lore(Component... lines) {
+        isNotNull(lines, "Item lore cannot be null.");
+        this.lore = lore.stream().map(line -> Component.empty().decoration(TextDecoration.ITALIC, TextDecoration.State.FALSE).append(line)).collect(Collectors.toList());
         return back();
     }
 
@@ -98,8 +105,8 @@ abstract class ItemBuilderLayout<T extends ItemBuilder>
 
         enchantments.forEach((enchantment, level) -> meta.addEnchant(enchantment, level, true));
 
-        meta.setDisplayName(name);
-        meta.setLore(lore);
+        meta.displayName(name);
+        meta.lore(lore);
 
         int currentVersion = ServerVersion.CURRENT.getMinor();
 
@@ -119,8 +126,6 @@ abstract class ItemBuilderLayout<T extends ItemBuilder>
 
         if (currentVersion >= 11) {
             meta.setUnbreakable(unbreakable);
-        } else {
-            meta.spigot().setUnbreakable(unbreakable);
         }
 
         itemStack.setItemMeta(meta);

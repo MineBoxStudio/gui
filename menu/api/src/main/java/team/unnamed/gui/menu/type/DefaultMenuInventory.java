@@ -1,5 +1,6 @@
 package team.unnamed.gui.menu.type;
 
+import net.kyori.adventure.text.Component;
 import org.bukkit.inventory.Inventory;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -11,7 +12,7 @@ import java.util.function.Predicate;
 
 public class DefaultMenuInventory implements MenuInventory {
 
-    protected final String title;
+    protected final Component title;
     protected final int slots;
     protected final List<ItemClickable> items;
     protected final Predicate<Inventory> openAction;
@@ -20,7 +21,7 @@ public class DefaultMenuInventory implements MenuInventory {
     protected final boolean canDragItems;
 
     protected DefaultMenuInventory(
-            String title, int slots,
+            Component title, int slots,
             List<ItemClickable> items,
             Predicate<Inventory> openAction,
             Predicate<Inventory> closeAction,
@@ -38,7 +39,7 @@ public class DefaultMenuInventory implements MenuInventory {
 
     @NotNull
     @Override
-    public String getTitle() {
+    public Component getTitle() {
         return title;
     }
 
