@@ -1,6 +1,6 @@
 package team.unnamed.gui.menu.v1_19_R3;
 
-import org.bukkit.craftbukkit.v1_19_R2.inventory.CraftInventoryCustom;
+import org.bukkit.craftbukkit.v1_19_R3.inventory.CraftInventoryCustom;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.jetbrains.annotations.NotNull;
