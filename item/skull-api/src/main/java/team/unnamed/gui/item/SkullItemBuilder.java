@@ -1,7 +1,10 @@
 package team.unnamed.gui.item;
 
+import com.destroystokyo.paper.profile.PlayerProfile;
+import com.destroystokyo.paper.profile.ProfileProperty;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
@@ -59,31 +62,22 @@ public class SkullItemBuilder
             skullMeta.setOwner(skin.getName());
         } else {
             UUID uuid = UUID.randomUUID();
-            GameProfile gameProfile = new GameProfile(uuid, uuid.toString());
+            PlayerProfile playerProfile = Bukkit.getServer().createProfile(uuid, uuid.toString());
 
             if (skin.getSignature() != null) {
-                gameProfile.getProperties().put("textures", new Property(
+                playerProfile.setProperty(new ProfileProperty(
                         "textures",
                         skin.getValue(),
                         skin.getSignature()
                 ));
             } else {
-                gameProfile.getProperties().put("textures", new Property(
+                playerProfile.setProperty(new ProfileProperty(
                         "textures",
-                        skin.getValue()
-                ));
+                        skin.getValue())
+                );
             }
 
-            boolean accessible = PROFILE_FIELD.isAccessible();
-            PROFILE_FIELD.setAccessible(true);
-
-            try {
-                PROFILE_FIELD.set(skullMeta, gameProfile);
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            } finally {
-                PROFILE_FIELD.setAccessible(accessible);
-            }
+            skullMeta.setPlayerProfile(playerProfile);
         }
 
 
