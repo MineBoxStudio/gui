@@ -1,4 +1,4 @@
-package team.unnamed.gui.menu.v1_20_R4;
+package team.unnamed.gui.menu.v1_21;
 
 import org.bukkit.craftbukkit.inventory.CraftInventoryCustom;
 import org.bukkit.inventory.Inventory;
