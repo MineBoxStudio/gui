@@ -17,14 +17,27 @@ public final class MenuUtil {
     private static final Constructor<?> WRAPPER_CONSTRUCTOR;
 
     static {
+        Constructor<?> wrapper_constructor;
         try {
-            WRAPPER_CONSTRUCTOR = Class.forName(
+
+            wrapper_constructor = Class.forName(
                     "team.unnamed.gui.menu." + ServerVersion.CURRENT
                             + ".MenuInventoryWrapperImpl"
             ).getConstructor(InventoryHolder.class, MenuInventory.class);
         } catch (ClassNotFoundException | NoSuchMethodException e) {
-            throw new ExceptionInInitializerError("Your server version isn't supported for ungui.");
+            try {
+                wrapper_constructor = Class.forName(
+                        "team.unnamed.gui.menu.defaultimpl"
+                                + ".MenuInventoryWrapperImpl"
+                ).getConstructor(InventoryHolder.class, MenuInventory.class);
+
+            } catch (NoSuchMethodException | ClassNotFoundException ex) {
+                throw new ExceptionInInitializerError(
+                        "An error has occurred while initializing the MenuUtil class"
+                );
+            }
         }
+        WRAPPER_CONSTRUCTOR = wrapper_constructor;
     }
 
     private MenuUtil() {
