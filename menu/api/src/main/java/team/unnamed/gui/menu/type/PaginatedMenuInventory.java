@@ -3,6 +3,7 @@ package team.unnamed.gui.menu.type;
 import net.kyori.adventure.text.Component;
 import org.bukkit.inventory.Inventory;
 import team.unnamed.gui.menu.item.ItemClickable;
+import team.unnamed.gui.menu.item.action.ItemClickableAction;
 
 import java.util.List;
 import java.util.Map;
@@ -30,6 +31,7 @@ public class PaginatedMenuInventory<E> extends DefaultMenuInventory {
             Component title, int slots,
             List<ItemClickable> items,
             Predicate<Inventory> openAction,
+            ItemClickableAction shiftClickAction,
             Predicate<Inventory> closeAction,
             boolean canIntroduceItems,
             boolean canDragItems,
@@ -44,7 +46,7 @@ public class PaginatedMenuInventory<E> extends DefaultMenuInventory {
             ItemClickable itemIfNoPreviousPage,
             ItemClickable itemIfNoNextPage
     ) {
-        super(title, slots, items, openAction, closeAction, canIntroduceItems, canDragItems);
+        super(title, slots, items, openAction,shiftClickAction, closeAction, canIntroduceItems, canDragItems);
         this.entitySlotFrom = entitySlotFrom;
         this.availableEntitySlots = availableEntitySlots;
         this.availableSlots = availableSlots;
@@ -119,7 +121,7 @@ public class PaginatedMenuInventory<E> extends DefaultMenuInventory {
 
     public PaginatedMenuInventory<E> clone(int page) {
         return new PaginatedMenuInventory<>(
-                title, slots, items, openAction, closeAction, canIntroduceItems,
+                title, slots, items, openAction,shiftClickAction, closeAction, canIntroduceItems,
                 canDragItems, entitySlotFrom, availableEntitySlots, availableSlots,
                 entities, page, layoutLines, layoutItems, entityParser,
                 previousPageItem, nextPageItem, itemIfNoEntities,

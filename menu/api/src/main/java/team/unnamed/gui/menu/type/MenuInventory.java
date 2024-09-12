@@ -5,6 +5,7 @@ import org.bukkit.inventory.Inventory;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import team.unnamed.gui.menu.item.ItemClickable;
+import team.unnamed.gui.menu.item.action.ItemClickableAction;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -50,6 +51,8 @@ public interface MenuInventory {
     void removeItem(int slot);
 
     @Nullable Predicate<Inventory> getOpenAction();
+
+    @Nullable ItemClickableAction getShiftClickAction();
 
     @Nullable Predicate<Inventory> getCloseAction();
 
