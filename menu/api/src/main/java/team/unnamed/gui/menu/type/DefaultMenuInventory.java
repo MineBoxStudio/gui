@@ -5,6 +5,7 @@ import org.bukkit.inventory.Inventory;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import team.unnamed.gui.menu.item.ItemClickable;
+import team.unnamed.gui.menu.item.action.ItemClickableAction;
 import team.unnamed.gui.menu.util.MenuUtil;
 
 import java.util.List;
@@ -16,6 +17,7 @@ public class DefaultMenuInventory implements MenuInventory {
     protected final int slots;
     protected final List<ItemClickable> items;
     protected final Predicate<Inventory> openAction;
+    protected final ItemClickableAction shiftClickAction;
     protected final Predicate<Inventory> closeAction;
     protected final boolean canIntroduceItems;
     protected final boolean canDragItems;
@@ -24,6 +26,7 @@ public class DefaultMenuInventory implements MenuInventory {
             Component title, int slots,
             List<ItemClickable> items,
             Predicate<Inventory> openAction,
+            ItemClickableAction shiftClickAction,
             Predicate<Inventory> closeAction,
             boolean canIntroduceItems,
             boolean canDragItems
@@ -32,6 +35,7 @@ public class DefaultMenuInventory implements MenuInventory {
         this.slots = slots;
         this.items = items;
         this.openAction = openAction;
+        this.shiftClickAction = shiftClickAction;
         this.closeAction = closeAction;
         this.canIntroduceItems = canIntroduceItems;
         this.canDragItems = canDragItems;
@@ -74,6 +78,12 @@ public class DefaultMenuInventory implements MenuInventory {
     @Override
     public Predicate<Inventory> getOpenAction() {
         return openAction;
+    }
+
+    @Nullable
+    @Override
+    public ItemClickableAction getShiftClickAction() {
+        return shiftClickAction;
     }
 
     @Nullable

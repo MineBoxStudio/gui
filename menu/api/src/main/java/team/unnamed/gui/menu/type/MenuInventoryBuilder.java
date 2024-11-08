@@ -2,6 +2,7 @@ package team.unnamed.gui.menu.type;
 
 import org.bukkit.inventory.Inventory;
 import team.unnamed.gui.menu.item.ItemClickable;
+import team.unnamed.gui.menu.item.action.ItemClickableAction;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -23,6 +24,8 @@ public interface MenuInventoryBuilder {
     MenuInventoryBuilder item(ItemClickable item);
 
     MenuInventoryBuilder openAction(Predicate<Inventory> action);
+
+    MenuInventoryBuilder shiftClickAction(ItemClickableAction action);
 
     MenuInventoryBuilder closeAction(Predicate<Inventory> action);
 

@@ -131,7 +131,7 @@ public class PaginatedMenuInventoryBuilder<E>
         }
 
         PaginatedMenuInventory<E> paginatedMenuInventory = new PaginatedMenuInventory<>(
-                title, slots, items, openAction, closeAction, canIntroduceItems,
+                title, slots, items, openAction,shiftClickAction, closeAction, canIntroduceItems,
                 canDragItems, entitySlotFrom, availableSlots.size(), availableSlots,
                 entities, 1, layoutLines, layoutItems, entityParser,
                 previousPageItem, nextPageItem, itemIfNoEntities,

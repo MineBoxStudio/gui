@@ -3,6 +3,7 @@ package team.unnamed.gui.menu.type;
 import net.kyori.adventure.text.Component;
 import org.bukkit.inventory.Inventory;
 import team.unnamed.gui.menu.item.ItemClickable;
+import team.unnamed.gui.menu.item.action.ItemClickableAction;
 import team.unnamed.gui.menu.util.MenuUtil;
 
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ abstract class MenuInventoryBuilderLayout<T extends MenuInventoryBuilder>
 
     protected List<ItemClickable> items;
     protected Predicate<Inventory> openAction;
+    protected ItemClickableAction shiftClickAction;
     protected Predicate<Inventory> closeAction;
     protected boolean canIntroduceItems;
     protected boolean canDragItems;
@@ -129,6 +131,14 @@ abstract class MenuInventoryBuilderLayout<T extends MenuInventoryBuilder>
     }
 
     @Override
+    public T shiftClickAction(ItemClickableAction action) {
+        isNotNull(action, "Shift click action cannot be null.");
+        this.shiftClickAction = action;
+
+        return back();
+    }
+
+    @Override
     public T closeAction(Predicate<Inventory> action) {
         isNotNull(action, "Close action cannot be null.");
         this.closeAction = action;
@@ -152,7 +162,7 @@ abstract class MenuInventoryBuilderLayout<T extends MenuInventoryBuilder>
     public Inventory build() {
         return internalBuild(new DefaultMenuInventory(
                 title, slots, items,
-                openAction, closeAction, canIntroduceItems,
+                openAction,shiftClickAction, closeAction, canIntroduceItems,
                 canDragItems
         ));
     }
